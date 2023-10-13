@@ -1,0 +1,17 @@
+version: "3"
+services:
+  atid:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: computer-arch-40007963
+
+  nginx:
+    image: nginx:alpine
+    container_name: frontend-nginx-40007963
+    ports:
+      - "8641:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - atid
